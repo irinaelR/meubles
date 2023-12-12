@@ -31,19 +31,14 @@ public class TraitementAjoutMateriel extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet TraitementAjoutMateriel</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet TraitementAjoutMateriel at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+          
+            int idStyle = Integer.parseInt(request.getParameter("idStyle"));
+            int idMateriel = Integer.parseInt(request.getParameter("idMateriel"));
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -55,8 +50,8 @@ public class TraitementAjoutMateriel extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int idStyle = Integer.parseInt(request.getParameter("idStyle"));
-        int idMateriel = Integer.parseInt(request.getParameter("idMateriel"));
+         processRequest(request, response);
+       
 //        processRequest(request, response);
     }
 

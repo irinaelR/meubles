@@ -11,10 +11,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Irina
- */
+
+
 public class TraitementInsertStyle extends HttpServlet {
 
     /**
@@ -26,23 +24,16 @@ public class TraitementInsertStyle extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+      protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet TraitementInsertStyle</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet TraitementInsertStyle at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+           
+            String nom = request.getParameter("nom");
+            out.println("nom :"+nom);
         }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -55,7 +46,7 @@ public class TraitementInsertStyle extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nom = request.getParameter("nom");
+        processRequest(request, response);
 //        processRequest(request, response);
     }
 

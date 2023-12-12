@@ -31,15 +31,7 @@ public class TraitementInsertionMateriel extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet TraitementInsertionMateriel</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet TraitementInsertionMateriel at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            String nom = request.getParameter("nom");
         }
     }
 
@@ -55,7 +47,8 @@ public class TraitementInsertionMateriel extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nom = request.getParameter("nom");
+                 processRequest(request, response);
+        
 //        processRequest(request, response);
     }
 
