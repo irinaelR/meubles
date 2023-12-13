@@ -4,8 +4,10 @@
  */
 package servlet;
 
+import Model.Style;
 import java.io.IOException;
 import java.io.PrintWriter;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,7 +33,16 @@ public class TraitementInsertStyle extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
            
             String nom = request.getParameter("nom");
-            out.println("nom :"+nom);
+            Style style= new Style();
+            style.setNomStyle(nom);
+            try{
+                style.insert(null);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("insertionGlobal.jsp");
+                dispatcher.forward(request, response);
+            } catch(Exception e){
+                out.println(e);
+            }
+             
         }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -4,10 +4,11 @@
  */
 package servlet;
 
-import Model.Categorie;
+import Model.Matiere;
 import Model.Style;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -16,9 +17,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Irina
+ * @author ITU
  */
-public class TraitementInsertionCategorie extends HttpServlet {
+public class VoirMatiereParStyle extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,17 +34,18 @@ public class TraitementInsertionCategorie extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String nom = request.getParameter("nom");
-            Categorie categorie= new Categorie();
-            categorie.setNomCategorie(nom);
+            /* TODO output your page here. You may use following sample code. */
             try{
-                categorie.insert(null);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("insertionGlobal.jsp");
+                int idStyle = Integer.parseInt(request.getParameter("style"));
+                Style style = new Style();
+                style.setIdStyle(idStyle);
+                List<Matiere> listeMatiere= style.listeMatiereParStyle(null);
+                request.setAttribute("listeMatiere", listeMatiere);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("listeMateriel.jsp");
                 dispatcher.forward(request, response);
-            } catch(Exception e){
+            }catch(Exception e){
                 out.println(e);
             }
-            
         }
     }
 
@@ -59,10 +61,7 @@ public class TraitementInsertionCategorie extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                 processRequest(request, response);
-
-        String nom = request.getParameter("nom");
-//        processRequest(request, response);
+        processRequest(request, response);
     }
 
     /**

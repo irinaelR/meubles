@@ -16,6 +16,18 @@
         <servlet-name>TraitementAjoutMateriel</servlet-name>
         <servlet-class>servlet.TraitementAjoutMateriel</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AjoutMaterielParStyle</servlet-name>
+        <servlet-class>servlet.AjoutMaterielParStyle</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TraitementAjoutMatiereDansStyle</servlet-name>
+        <servlet-class>servlet.TraitementAjoutMatiereDansStyle</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VoirMatiereParStyle</servlet-name>
+        <servlet-class>servlet.VoirMatiereParStyle</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TraitementInsertionCategorie</servlet-name>
         <url-pattern>/TraitementInsertionCategorie</url-pattern>
@@ -31,5 +43,17 @@
     <servlet-mapping>
         <servlet-name>TraitementAjoutMateriel</servlet-name>
         <url-pattern>/TraitementAjoutMateriel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AjoutMaterielParStyle</servlet-name>
+        <url-pattern>/AjoutMaterielParStyle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TraitementAjoutMatiereDansStyle</servlet-name>
+        <url-pattern>/TraitementAjoutMatiereDansStyle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VoirMatiereParStyle</servlet-name>
+        <url-pattern>/VoirMatiereParStyle</url-pattern>
     </servlet-mapping>
 </web-app>

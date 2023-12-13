@@ -4,8 +4,10 @@
  */
 package servlet;
 
+import Model.Matiere;
 import java.io.IOException;
 import java.io.PrintWriter;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,6 +34,16 @@ public class TraitementInsertionMateriel extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             String nom = request.getParameter("nom");
+            Matiere matiere= new Matiere();
+            matiere.setNomMatiere(nom);
+             RequestDispatcher dispatcher = request.getRequestDispatcher("insertionGlobal.jsp");
+            dispatcher.forward(request, response);
+            try{
+                matiere.insert(null);
+            } catch(Exception e){
+                out.println(e);
+            }
+           
         }
     }
 

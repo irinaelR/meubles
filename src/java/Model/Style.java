@@ -52,7 +52,7 @@ public class Style {
         if(connecte==null){
             connecte=con1.Connect();
         }
-        Statement statement = con.createStatement();
+        Statement statement = connecte.createStatement();
         List<Style> liste = new ArrayList<Model.Style>();
         String sql = "select * from style";
         ResultSet resultSet = statement.executeQuery(sql);
@@ -89,6 +89,50 @@ public class Style {
         }
     }
     
+    public List<Matiere> listeMatiereParStyle(Connection con) throws Exception{
+        Connexion con1=new Connexion();
+        Connection connecte= con;
+        if(connecte==null){
+            connecte=con1.Connect();
+        }
+        Statement statement = connecte.createStatement();
+        List<Matiere> liste = new ArrayList<Model.Matiere>();
+        String sql = "select idMatiere , nomMatiere from matiere";
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        while (resultSet.next()) {
+            Matiere temp = new Matiere();
+            temp.setIdMatiere(resultSet.getInt("idMatiere"));
+            temp.setNomMatiere(resultSet.getString("nomMatiere"));
+
+            liste.add(temp);
+        }
+        
+        if(con== null){    connecte.close();    }
+
+        return liste;
+    }
+    
+    public void ajouterMatiere(Connection con , int idMatiere) throws Exception{
+        Connexion con1=new Connexion();
+        Connection connecte= con;
+        try{
+            if(connecte==null){
+                connecte=con1.Connect();
+            }
+            String requette="insert into matiereParStyle(idStyle , idMatiere) values ("+getIdStyle()+" , "+idMatiere+");";
+            
+            Statement stat=connecte.createStatement();
+            stat.executeUpdate(requette);
+            
+        }catch(Exception e){ 
+            throw new Exception(" il y a erreur dans : Categorie/insert(con)");
+        }finally{
+            if(con== null){    connecte.close();    }
+        }
+        
+    }
+    
     
 
     public List<Style> selectById(Connection con, int id) throws Exception {
@@ -117,16 +161,16 @@ public class Style {
     }
      public static void main(String[] args){
         try {
-        Connexion connexion = new Connexion();
-        Connection con = connexion.Connect();
-        Style cat= new Style();
-        cat.setNomStyle("style1");
-        cat.insert(null);
-        List<Style> liste = cat.select(con);
-        for(int i=0 ; i<liste.size() ; i++){
-            System.out.println(liste.get(i).getNomStyle());
-        }
-        con.close();
+            Connexion connexion = new Connexion();
+            Connection con = connexion.Connect();
+            Style cat= new Style();
+            cat.setNomStyle("style1");
+            cat.insert(null);
+            List<Style> liste = cat.select(con);
+            for(int i=0 ; i<liste.size() ; i++){
+                System.out.println(liste.get(i).getNomStyle());
+            }
+            con.close();
         }catch(Exception e){
             System.out.println(e);
         }

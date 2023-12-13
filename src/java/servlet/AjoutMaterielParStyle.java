@@ -1,24 +1,28 @@
+package servlet;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package servlet;
 
-import Model.Categorie;
+
+import Model.Matiere;
 import Model.Style;
 import java.io.IOException;
 import java.io.PrintWriter;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import connexion.*;
+import java.sql.Connection;
+import java.util.List;
+import jakarta.servlet.RequestDispatcher;
 /**
  *
- * @author Irina
+ * @author ITU
  */
-public class TraitementInsertionCategorie extends HttpServlet {
+public class AjoutMaterielParStyle extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,17 +37,19 @@ public class TraitementInsertionCategorie extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String nom = request.getParameter("nom");
-            Categorie categorie= new Categorie();
-            categorie.setNomCategorie(nom);
+             Connexion connexion = new Connexion();
             try{
-                categorie.insert(null);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("insertionGlobal.jsp");
+                Connection con= connexion.Connect();
+                List<Style> listeStyle = new Style().select(con);
+                List<Matiere> listeMateriel= new Matiere().select(con);
+                request.setAttribute("listeStyle", listeStyle);
+                request.setAttribute("listeMateriel", listeMateriel);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("ajoutMaterielParStyle.jsp");
                 dispatcher.forward(request, response);
-            } catch(Exception e){
+                
+            }catch(Exception e){
                 out.println(e);
             }
-            
         }
     }
 
@@ -59,10 +65,7 @@ public class TraitementInsertionCategorie extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                 processRequest(request, response);
-
-        String nom = request.getParameter("nom");
-//        processRequest(request, response);
+        processRequest(request, response);
     }
 
     /**

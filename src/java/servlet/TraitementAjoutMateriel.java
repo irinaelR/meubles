@@ -4,8 +4,10 @@
  */
 package servlet;
 
+import Model.Style;
 import java.io.IOException;
 import java.io.PrintWriter;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,6 +36,16 @@ public class TraitementAjoutMateriel extends HttpServlet {
           
             int idStyle = Integer.parseInt(request.getParameter("idStyle"));
             int idMateriel = Integer.parseInt(request.getParameter("idMateriel"));
+           
+            try{
+                Style style = new Style();
+                style.setIdStyle(idStyle);
+                style.ajouterMatiere(null, idMateriel);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("insertionGlobal.jsp");
+                dispatcher.forward(request, response);
+            }catch(Exception e){
+                out.println(e);
+            }
         }
     }
 
