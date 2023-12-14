@@ -5,6 +5,7 @@
 package servlet;
 
 import Model.Matiere;
+import connexion.Connexion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.RequestDispatcher;
@@ -39,7 +40,7 @@ public class TraitementInsertionMateriel extends HttpServlet {
              RequestDispatcher dispatcher = request.getRequestDispatcher("insertionGlobal.jsp");
             dispatcher.forward(request, response);
             try{
-                matiere.insert(null);
+                matiere.insert(Connexion.Connect());
             } catch(Exception e){
                 out.println(e);
             }

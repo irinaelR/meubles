@@ -14,6 +14,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import connexion.Connexion;
 
 /**
  *
@@ -39,7 +40,10 @@ public class VoirMatiereParStyle extends HttpServlet {
                 int idStyle = Integer.parseInt(request.getParameter("style"));
                 Style style = new Style();
                 style.setIdStyle(idStyle);
-                List<Matiere> listeMatiere= style.listeMatiereParStyle(null);
+                List<Matiere> listeMatiere= style.listeMatiereParStyle(Connexion.Connect());
+                for(int i = 0; i<listeMatiere.size(); i++) {
+                    System.out.println(listeMatiere.get(i).getNomMatiere());
+                }
                 request.setAttribute("listeMatiere", listeMatiere);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("listeMateriel.jsp");
                 dispatcher.forward(request, response);

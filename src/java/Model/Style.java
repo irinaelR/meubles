@@ -107,6 +107,7 @@ public class Style {
 
             liste.add(temp);
         }
+        System.out.println("Teto");
         
         if(con== null){    connecte.close();    }
 

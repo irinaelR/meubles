@@ -8,6 +8,7 @@ import Model.Categorie;
 import Model.Style;
 import java.io.IOException;
 import java.io.PrintWriter;
+import connexion.Connexion;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;

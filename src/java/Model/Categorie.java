@@ -64,7 +64,7 @@ public class Categorie {
         } catch (Exception e) {
             throw new Exception(" problem dans Categorie/select(c) ");
         }finally{
-            if(con== null){    connecte.close();    }
+            if(con != null){    connecte.close();    }
         }
         return liste;
     }

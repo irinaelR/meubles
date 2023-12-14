@@ -10,10 +10,10 @@ import java.sql.DriverManager;
  * @author ITU
  */
 public class Connexion {
-    public Connection Connect()throws Exception, ClassNotFoundException
+    public static Connection Connect()throws Exception, ClassNotFoundException
     {
         Class.forName("org.postgresql.Driver");
-        Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/projetmeuble","postgres","fehizoro");
+        Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/projetmeuble","postgres","olafienby7");
         return con;
     }
     public static void main(String[] args){
