@@ -41,11 +41,11 @@
                 </div>
                 <div class="input-wrapper">
                     <label>Petit</label>
-                    <input type="checkbox" name="petit" class="champs" value="#">
+                    <input type="checkbox" name="petit" class="champs" value="1">
                 </div>
                 <div class="input-wrapper">
                     <label>Grand</label>
-                    <input type="checkbox" name="grand" class="champs" value="#">
+                    <input type="checkbox" name="grand" class="champs" value="2">
                 </div>
                 <input type="submit" class="btn btn-brown" value="OK">
             </form>

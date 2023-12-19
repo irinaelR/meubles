@@ -14,22 +14,22 @@
     </head>
     <body>
         <div id="main-container">
-            <form action="#" method="get" class="form-card">
+            <form action="TraitementInsertionFabrication" method="get" class="form-card">
                 <h3>Liste matiere pour la fabrication</h3>
                 <div class="input-wrapper">
-                    <input type="checkbox" name="#" value="#">
+                    <input type="checkbox" name="idMatiere[]" value="#">
                     <label>Matiere 1</label>
-                    <input type="number" name="qteMat1" placeholder="Quantite...">
+                    <input type="number" name="quantite[]" placeholder="Quantite...">
                 </div>
                 <div class="input-wrapper">
-                    <input type="checkbox" name="#" value="#">
+                    <input type="checkbox" name="idMatiere[]" value="#">
                     <label>Matiere 2</label>
-                    <input type="number" name="qteMat1" placeholder="Quantite...">
+                    <input type="number" name="quantite[]" placeholder="Quantite...">
                 </div>
                 <div class="input-wrapper">
-                    <input type="checkbox" name="#" value="#">
+                    <input type="checkbox" name="idMatiere[]" value="#">
                     <label>Matiere 3</label>
-                    <input type="number" name="qteMat1" placeholder="Quantite...">
+                    <input type="number" name="quantite[]" placeholder="Quantite...">
                 </div>
                 <input type="submit" class="btn btn-brown" value="OK">
             </form>

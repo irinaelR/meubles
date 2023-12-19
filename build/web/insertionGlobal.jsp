@@ -50,7 +50,7 @@
             <br>
             <br>
             
-            <form action="TraitementInsertVolume" method="get" class="form-card">
+            <form action="RecuperationVolume" method="get" class="form-card">
                 <h3>Insertion Volume</h3>
                 <div class="input-wrapper">
                     <label>Nom</label>
