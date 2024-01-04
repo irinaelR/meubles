@@ -4,12 +4,15 @@
  */
 package servlet;
 
+import Model.FormuleFabrication;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -28,8 +31,24 @@ public class TraitementInsertionFabrication extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String[] idMatieres = request.getParameterValues("idMatiere[]");
-        String[] quantitesStr = request.getParameterValues("quantite[]");
+          try (PrintWriter out = response.getWriter()) {
+            String idtsc= request.getParameter("idTcs");
+            String[] idMatieres = request.getParameterValues("idMatiere[]");
+            String[] quantitesStr = request.getParameterValues("quantite[]");
+            for(int i=0 ; i< idMatieres.length ; i++){
+                out.println("idMatiere : "+idMatieres[i]+" quantitesStr : "+ quantitesStr[i]);
+            }
+            out.println("idTcs : "+idtsc);
+            FormuleFabrication formule = new FormuleFabrication();
+            formule.setIdTailleParCategorie(idtsc);
+            formule.creationListeMatiere(idMatieres, quantitesStr);
+            try {
+                formule.insertionFormule(null);
+            } catch (Exception ex) {
+               out.println(ex);
+            }
+            
+          }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

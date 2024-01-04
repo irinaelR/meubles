@@ -4,14 +4,26 @@
     Author     : Irina
 --%>
 
+
+
+
+<%@page import="Model.*"%>
+<%@page import="java.util.List"%>
+<%@page import="connexion.Connexion"%>
+<%@page import="java.sql.*"%>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%   Connexion connexion = new Connexion();
+ Connection con= connexion.Connect();
+ try { 
+        Style style1 = new Style(); 
+        List<Categorie> listeCategorie = new Categorie().select(con);
+        List<Style> listeStyle = style1.select(con);
+        List<Volume> listeVolume = new Volume().select(con);
 
-<!--
 
-    Document statique
-    Formulaire sans action/redirection
-
--->
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,34 +33,40 @@
     </head>
     <body>
         <div id="main-container">
-            <form action="#" method="get" class="form-card">
+            <form action="RecuperationTailleCategorieStyle" method="get" class="form-card">
                 <h3>Taille disponible par categorie</h3>
                 <div class="input-wrapper">
                     <label>Categorie</label>
                     <select name="categorie" class="champs">
-                        <option value="">Canape</option>
-                        <option value="">Fauteuil</option>
-                        <option value="">Chaise</option>
+                       <% for(int i=0 ; i< listeCategorie.size() ; i++){%>
+                            <option value="<%= listeCategorie.get(i).getIdCategorie() %>"><%= listeCategorie.get(i).getNomCategorie() %></option>
+                        <% } %>
 
                     </select>
                 </div>
                 <div class="input-wrapper">
                     <label>Style</label>
                     <select name="style" class="champs">
-                        <option value="">Boheme</option>
-                        <option value="">Royal</option>
+                        <% for(int i=0 ; i< listeStyle.size() ; i++){%>
+                            <option value="<%= listeStyle.get(i).getIdStyle() %>"><%= listeStyle.get(i).getNomStyle() %></option>
+                        <% } %>
                     </select>
                 </div>
-                <div class="input-wrapper">
-                    <label>Petit</label>
-                    <input type="checkbox" name="petit" class="champs" value="1">
-                </div>
-                <div class="input-wrapper">
-                    <label>Grand</label>
-                    <input type="checkbox" name="grand" class="champs" value="2">
-                </div>
+                    
+                <% for(int i=0 ; i<listeVolume.size() ;i++){ %>    
+                    <div class="input-wrapper">
+                        <label><%= listeVolume.get(i).getNomVolume() %></label>
+                        <input type="checkbox" name="petit[]" class="champs" value="<%= listeVolume.get(i).getIdVolume() %>">
+                    </div>
+                <% } %>
+                
                 <input type="submit" class="btn btn-brown" value="OK">
             </form>
         </div>
     </body>
 </html>
+<% } catch(Exception e){ %>
+<h3 style="color: red"> <%= e %></h3>
+<% }finally{ 
+   con.close();
+} %>

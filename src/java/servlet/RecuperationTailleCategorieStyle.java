@@ -4,13 +4,15 @@
  */
 package servlet;
 
+import Model.TailleParCategorieParStyle;
+import connexion.Connexion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import java.sql.*;
 /**
  *
  * @author Irina
@@ -28,15 +30,29 @@ public class RecuperationTailleCategorieStyle extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int idCategorie = Integer.parseInt(request.getParameter("categorie"));
-        int idStyle = Integer.parseInt(request.getParameter("style"));
-        int petit = -1;
-        int grand = -1;
-        if(request.getParameter("petit") != null) {
-            petit = Integer.parseInt(request.getParameter("petit"));
-        } 
-        if(request.getParameter("grand") != null) {
-            grand = Integer.parseInt(request.getParameter("grand"));
+           try (PrintWriter out = response.getWriter()) {
+             Connexion connexion = new Connexion();
+            
+            try{
+                
+                String idCategorie = (request.getParameter("categorie"));
+                String idStyle = (request.getParameter("style"));
+                int petit = -1;
+                int grand = -1;
+                String[] listeVolume= request.getParameterValues("petit[]");
+
+               for(int i=0 ; i<listeVolume.length ; i++){
+                   out.println("=--"+listeVolume[i]);
+                    
+               }
+               new TailleParCategorieParStyle().insertions(null, idCategorie, idStyle, listeVolume);
+
+
+
+
+            }catch(Exception e){
+                out.println(e);
+            }
         }
     }
 

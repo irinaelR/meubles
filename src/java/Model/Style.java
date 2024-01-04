@@ -37,9 +37,7 @@ public class Style {
         this.nomStyle = nomStyle;
     }
     
-    public Style() {
-        
-    }
+    public Style() {}
 
     public Style(int idStyle, String nomStyle) {
         this.idStyle = idStyle;
@@ -165,7 +163,7 @@ public class Style {
             Connection con = connexion.Connect();
             Style cat= new Style();
             cat.setNomStyle("style1");
-            cat.insert(null);
+//            cat.insert(null);
             List<Style> liste = cat.select(con);
             for(int i=0 ; i<liste.size() ; i++){
                 System.out.println(liste.get(i).getNomStyle());

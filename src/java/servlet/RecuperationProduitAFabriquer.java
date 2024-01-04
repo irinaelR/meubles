@@ -4,12 +4,14 @@
  */
 package servlet;
 
+import Model.TailleParCategorieParStyle;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -28,9 +30,28 @@ public class RecuperationProduitAFabriquer extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int idCategorie = Integer.parseInt(request.getParameter("categorie"));
-        int idStyle = Integer.parseInt(request.getParameter("style"));
-        int idVolume = Integer.parseInt(request.getParameter("volume"));
+           try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            try{
+                String idCategorie = (request.getParameter("categorie"));
+                String idStyle = (request.getParameter("style"));
+                String idVolume = (request.getParameter("volume"));
+                
+                TailleParCategorieParStyle t= new TailleParCategorieParStyle();
+                t.setIdCategorie(idCategorie);
+                t.setIdStyle(idStyle);
+                t.setIdVolume(idVolume);
+                int idTcs = t.getIdTcs(null);
+                out.println(idTcs);
+                
+                request.setAttribute("idTcs", idTcs);
+                 RequestDispatcher dispatcher = request.getRequestDispatcher("listeMatiereFabrication.jsp");
+                dispatcher.forward(request, response);
+                       
+            }catch(Exception e){
+                out.println(e);
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

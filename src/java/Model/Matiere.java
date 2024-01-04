@@ -20,13 +20,37 @@ import java.util.List;
 public class Matiere {
     int idMatiere;
     String nomMatiere;
+    double Quantite;
 
+    public Matiere(int idMatiere, double Quantite) {
+        this.idMatiere = idMatiere;
+        this.Quantite = Quantite;
+    }
+
+    
+    
+    public double getQuantite() {
+        return Quantite;
+    }
+
+    public void setQuantite(double Quantite) {
+        this.Quantite = Quantite;
+    }
+    
+    public void setQuantite(String Quantite) {
+        setQuantite(Double.parseDouble(Quantite));
+    }
+    
     public int getIdMatiere() {
         return idMatiere;
     }
 
     public void setIdMatiere(int idMatiere) {
         this.idMatiere = idMatiere;
+    }
+    
+    public void setIdMatiere(String idMatiere) {
+        setIdMatiere(Integer.parseInt(idMatiere));
     }
 
     public String getNomMatiere() {
@@ -52,7 +76,7 @@ public class Matiere {
         if(connecte==null){
             connecte=con1.Connect();
         }
-        Statement statement = con.createStatement();
+        Statement statement = connecte.createStatement();
         List<Matiere> liste = new ArrayList<Model.Matiere>();
         String sql = "select * from matiere";
 
@@ -91,18 +115,52 @@ public class Matiere {
         }
     }
     
+    public List<Produit> selectProduitUtiliseMatiere(Connection con)throws Exception {
+     Connexion con1=new Connexion();
+        Connection connecte= con;
+        if(connecte==null){
+            connecte=con1.Connect();
+        }
+        Statement statement = con.createStatement();
+        List<Produit> liste = new ArrayList<Model.Produit>();
+        String sql = "select nomcategorie , nomstyle , nomvolume , quantite from FORMULEAVECSTYLECATEGORIE where idMatiere="+this.idMatiere+" ";
+
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        while (resultSet.next()) {
+            Produit produit= new Produit();
+            produit.setNomStyle(resultSet.getString("nomstyle"));
+            produit.setNomCategorie(resultSet.getString("nomcategorie"));
+            produit.setNomVolume(resultSet.getString("nomvolume"));
+            produit.setQuantite(resultSet.getDouble("quantite"));            
+            liste.add(produit);
+        }
+        
+        if(con== null){    connecte.close();    }
+
+        return liste;
+    }
+    
     public static void main(String[] args){
         try {
-        Connexion connexion = new Connexion();
-        Connection con = connexion.Connect();
-        Matiere cat= new Matiere();
-        cat.setNomMatiere("rams");
-        cat.insert(null);
-        List<Matiere> liste = cat.select(con);
-        for(int i=0 ; i<liste.size() ; i++){
-            System.out.println(liste.get(i).getNomMatiere());
-        }
-        con.close();
+            Connexion connexion = new Connexion();
+            Connection con = connexion.Connect();
+            Matiere cat= new Matiere();
+            cat.setIdMatiere(1);
+            
+            
+             List<Produit> listeProduit = cat.selectProduitUtiliseMatiere(con);
+            for(int i=0 ; i<listeProduit.size() ; i++){
+                System.out.println(listeProduit.get(i).getNomCategorie()+"   "+listeProduit.get(i).getNomStyle()+"  "+ listeProduit.get(i).getQuantite());
+            }
+            
+//            cat.setNomMatiere("rams");
+//            cat.insert(null);
+//            List<Matiere> liste = cat.select(con);
+//            for(int i=0 ; i<liste.size() ; i++){
+//                System.out.println(liste.get(i).getNomMatiere());
+//            }
+            con.close();
         }catch(Exception e){
             System.out.println(e);
         }
