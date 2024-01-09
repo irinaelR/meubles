@@ -70,7 +70,9 @@ public class Matiere {
         this.prix = prix;
     }
     
-    
+    public void setPrix(String str) {
+        setPrix(Double.parseDouble(str));
+    }
 
     public Matiere() {
         
@@ -160,7 +162,7 @@ public class Matiere {
                 connecte=con1.Connect();
             }
         
-            String requette="insert into prixmatieriel(idMatiere, prix) values ('"+getIdMatiere()+ "," + getPrix() + "');";
+            String requette="insert into prixmateriel(idMatiere, prix) values ('"+getIdMatiere()+ "," + getPrix() + "');";
             System.out.println(requette);
             Statement stat=connecte.createStatement();
             stat.executeUpdate(requette);

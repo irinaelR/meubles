@@ -122,7 +122,7 @@ public class Produit {
         }
         Statement statement = connecte.createStatement();
         List<Produit> liste = new ArrayList<Model.Produit>();
-        String sql = "select * from Produit";
+        String sql = "select * from coutmeuble";
 
         ResultSet resultSet = statement.executeQuery(sql);
 
@@ -132,7 +132,7 @@ public class Produit {
             produit.setNomCategorie(resultSet.getString("nomcategorie"));
             produit.setNomVolume(resultSet.getString("nomvolume"));
             produit.setQuantite(resultSet.getDouble("quantite"));   
-            produit.setPrix(resultSet.getDouble("prixMateriel"));
+            produit.setPrix(resultSet.getDouble("cout"));
             liste.add(produit);
         }
         
@@ -141,5 +141,30 @@ public class Produit {
         return liste;
     }
     
+    public List<Produit> getProduitAvecPrix(Connection con, String min, String max) throws Exception {
+        Connexion con1=new Connexion();
+        Connection connecte= con;
+        if(connecte==null){
+            connecte=con1.Connect();
+        }
+        Statement statement = connecte.createStatement();
+        List<Produit> liste = new ArrayList<Model.Produit>();
+        String sql = "select * from coutmeuble where cout <= " + max + " AND cout >= " + min;
+
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        while (resultSet.next()) {
+            Produit produit= new Produit();
+            produit.setNomStyle(resultSet.getString("nomstyle"));
+            produit.setNomCategorie(resultSet.getString("nomcategorie"));
+            produit.setNomVolume(resultSet.getString("nomvolume"));
+            produit.setPrix(resultSet.getDouble("cout"));
+            liste.add(produit);
+        }
+        
+        if(con== null){    connecte.close();    }
+
+        return liste;
+    }
     
 }
