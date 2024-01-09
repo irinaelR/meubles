@@ -4,6 +4,13 @@
  */
 package Model;
 
+import connexion.Connexion;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author ITU
@@ -16,6 +23,7 @@ public class Produit {
     String NomStyle;
     String NomVolume;
     double Quantite;
+    double prix;
 
     public Produit(int IdCategorie, int IdStyle, int IdVolume, String NomCategorie, String NomStyle, String NomVolume, double Quantite) {
         this.IdCategorie = IdCategorie;
@@ -97,7 +105,41 @@ public class Produit {
         this.Quantite = Quantite;
     }
 
-    
+    public double getPrix() {
+        return prix;
+    }
+
+    public void setPrix(double prix) {
+        this.prix = prix;
+    }
+
+
+    public List<Produit> getProduitAvecPrix(Connection con) throws Exception {
+        Connexion con1=new Connexion();
+        Connection connecte= con;
+        if(connecte==null){
+            connecte=con1.Connect();
+        }
+        Statement statement = connecte.createStatement();
+        List<Produit> liste = new ArrayList<Model.Produit>();
+        String sql = "select * from Produit";
+
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        while (resultSet.next()) {
+            Produit produit= new Produit();
+            produit.setNomStyle(resultSet.getString("nomstyle"));
+            produit.setNomCategorie(resultSet.getString("nomcategorie"));
+            produit.setNomVolume(resultSet.getString("nomvolume"));
+            produit.setQuantite(resultSet.getDouble("quantite"));   
+            produit.setPrix(resultSet.getDouble("prixMateriel"));
+            liste.add(produit);
+        }
+        
+        if(con== null){    connecte.close();    }
+
+        return liste;
+    }
     
     
 }

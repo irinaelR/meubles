@@ -21,6 +21,7 @@ public class Matiere {
     int idMatiere;
     String nomMatiere;
     double Quantite;
+    double prix;
 
     public Matiere(int idMatiere, double Quantite) {
         this.idMatiere = idMatiere;
@@ -60,6 +61,16 @@ public class Matiere {
     public void setNomMatiere(String nomMatiere) {
         this.nomMatiere = nomMatiere;
     }
+
+    public double getPrix() {
+        return prix;
+    }
+
+    public void setPrix(double prix) {
+        this.prix = prix;
+    }
+    
+    
 
     public Matiere() {
         
@@ -141,6 +152,27 @@ public class Matiere {
         return liste;
     }
     
+    public void insertMatiereAvecPrix(Connection con) throws Exception {
+        Connexion con1=new Connexion();
+        Connection connecte= con;
+        try{
+            if(connecte==null){
+                connecte=con1.Connect();
+            }
+        
+            String requette="insert into prixmatieriel(idMatiere, prix) values ('"+getIdMatiere()+ "," + getPrix() + "');";
+            System.out.println(requette);
+            Statement stat=connecte.createStatement();
+            stat.executeUpdate(requette);
+            
+        }catch(Exception e){ 
+            throw new Exception(" il y a erreur dans : Categorie/insert(con)");
+        }finally{
+            if(con== null){    connecte.close();    }
+        }
+        
+    }
+    
     public static void main(String[] args){
         try {
             Connexion connexion = new Connexion();
@@ -165,4 +197,5 @@ public class Matiere {
             System.out.println(e);
         }
     }
+    
 }
