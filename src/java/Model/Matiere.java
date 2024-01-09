@@ -70,7 +70,9 @@ public class Matiere {
         this.prix = prix;
     }
     
-    
+    public void setPrix(String str) {
+        setPrix(Double.parseDouble(str));
+    }
 
     public Matiere() {
         

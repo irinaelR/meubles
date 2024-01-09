@@ -158,7 +158,6 @@ public class Produit {
             produit.setNomStyle(resultSet.getString("nomstyle"));
             produit.setNomCategorie(resultSet.getString("nomcategorie"));
             produit.setNomVolume(resultSet.getString("nomvolume"));
-            produit.setQuantite(resultSet.getDouble("quantite"));   
             produit.setPrix(resultSet.getDouble("cout"));
             liste.add(produit);
         }

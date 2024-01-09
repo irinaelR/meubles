@@ -44,6 +44,14 @@
         <servlet-name>TraitementInsertionFabrication</servlet-name>
         <servlet-class>servlet.TraitementInsertionFabrication</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TraitementAjoutPrixMatiere</servlet-name>
+        <servlet-class>servlet.TraitementAjoutPrixMatiere</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RecuperationPrixMinMax</servlet-name>
+        <servlet-class>servlet.RecuperationPrixMinMax</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TraitementInsertionCategorie</servlet-name>
         <url-pattern>/TraitementInsertionCategorie</url-pattern>
@@ -87,5 +95,13 @@
     <servlet-mapping>
         <servlet-name>TraitementInsertionFabrication</servlet-name>
         <url-pattern>/TraitementInsertionFabrication</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TraitementAjoutPrixMatiere</servlet-name>
+        <url-pattern>/TraitementAjoutPrixMatiere</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RecuperationPrixMinMax</servlet-name>
+        <url-pattern>/RecuperationPrixMinMax</url-pattern>
     </servlet-mapping>
 </web-app>
