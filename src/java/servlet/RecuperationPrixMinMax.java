@@ -12,6 +12,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
+import Model.*;
+import jakarta.servlet.RequestDispatcher;
 
 /**
  *
@@ -35,6 +37,9 @@ public class RecuperationPrixMinMax extends HttpServlet {
         
         try {
             List<Produit> liste = new Produit().getProduitAvecPrix(null, min, max);
+            request.setAttribute("listeProduit",liste);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("listeMeubleSelonPrix.jsp");
+            dispatcher.forward(request, response);
         } catch (Exception e) {
             
         }

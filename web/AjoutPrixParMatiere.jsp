@@ -21,7 +21,7 @@
 =======
 
         <div id="main-container">
-            <form action="TraitementInsertionCategorie" method="get" class="form-card">
+            <form action="TraitementAjoutPrixMatiere" method="get" class="form-card">
                 <h3>Ajout prix par Matiere</h3>
                 <div class="input-wrapper">
                     <label>Categorie</label>

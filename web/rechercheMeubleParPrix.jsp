@@ -17,7 +17,7 @@
 =======
 
         <div id="main-container">
-            <form action="TraitementInsertionCategorie" method="get" class="form-card">
+            <form action="RecuperationPrixMinMax" method="get" class="form-card">
                 <h3>Recherche nombre par prix</h3>
                 <div class="input-wrapper">
                     <label>Prix Min : </label>
