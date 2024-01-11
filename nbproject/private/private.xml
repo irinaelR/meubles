@@ -4,10 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Irina/Documents/NetBeansProjects/meubles/meubles/sql/base.sql</file>
-            <file>file:/C:/Users/Irina/Documents/NetBeansProjects/meubles/meubles/web/formuleFabrication.jsp</file>
-            <file>file:/C:/Users/Irina/Documents/NetBeansProjects/meubles/meubles/src/java/servlet/RecuperationProduitAFabriquer.java</file>
-            <file>file:/C:/Users/Irina/Documents/NetBeansProjects/meubles/meubles/web/listeMatiereFabrication.jsp</file>
-            <file>file:/C:/Users/Irina/Documents/NetBeansProjects/meubles/meubles/src/java/servlet/TraitementInsertionFabrication.java</file>
+            <file>file:/C:/Users/Irina/Documents/NetBeansProjects/meubles/meubles/src/java/servlet/RecuperationPrixMinMax.java</file>
+            <file>file:/C:/Users/Irina/Documents/NetBeansProjects/meubles/meubles/src/java/Model/Produit.java</file>
+            <file>file:/C:/Users/Irina/Documents/NetBeansProjects/meubles/meubles/src/java/servlet/TraitementAjoutPrixMatiere.java</file>
+            <file>file:/C:/Users/Irina/Documents/NetBeansProjects/meubles/meubles/src/java/Model/Matiere.java</file>
         </group>
     </open-files>
 </project-private>
