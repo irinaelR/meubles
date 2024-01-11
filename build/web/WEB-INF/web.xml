@@ -52,6 +52,10 @@
         <servlet-name>RecuperationPrixMinMax</servlet-name>
         <servlet-class>servlet.RecuperationPrixMinMax</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TraitementAchatMatierePremiere</servlet-name>
+        <servlet-class>servlet.TraitementAchatMatierePremiere</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TraitementInsertionCategorie</servlet-name>
         <url-pattern>/TraitementInsertionCategorie</url-pattern>
@@ -103,5 +107,9 @@
     <servlet-mapping>
         <servlet-name>RecuperationPrixMinMax</servlet-name>
         <url-pattern>/RecuperationPrixMinMax</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TraitementAchatMatierePremiere</servlet-name>
+        <url-pattern>/TraitementAchatMatierePremiere</url-pattern>
     </servlet-mapping>
 </web-app>
