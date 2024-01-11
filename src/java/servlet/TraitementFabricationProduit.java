@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author Irina
  */
-public class TraitementAchatMatierePremiere extends HttpServlet {
+public class TraitementFabricationProduit extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,22 +29,18 @@ public class TraitementAchatMatierePremiere extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-            int idMatiere = Integer.parseInt(request.getParameter("achatmatierepremiere"));
+            int idProdduit = Integer.parseInt(request.getParameter("produit"));
             double qte = Double.parseDouble(request.getParameter("quantite"));
             try (PrintWriter out = response.getWriter()) {
                 
                 try {
                     Stock stock = new Stock();
-                    stock.setIdMatiere(idMatiere);
-                    stock.setQuantiteRestant(qte);
-                    
-                    stock.insertionEntree(null);
+                    stock.insertionCommande(null, idProdduit, qte);
                 } catch (Exception e) {
+                    out.println(e);
                 }
                 
-                out.println("idMatiere = " + idMatiere);
-                out.println("quantite = " + qte);
-            }
+            } 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

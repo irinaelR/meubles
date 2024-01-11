@@ -16,6 +16,7 @@ import java.util.List;
  * @author ITU
  */
 public class Produit {
+    int Idtcs;
     int IdCategorie ;
     int  IdStyle ;
     int  IdVolume ;
@@ -44,6 +45,13 @@ public class Produit {
         this.NomCategorie = NomCategorie;
         this.NomStyle = NomStyle;
         this.NomVolume = NomVolume;
+    }
+    
+    public int getIdtcs() {
+        return Idtcs;
+    }
+    public void setIdtcs(int idtcs) {
+        Idtcs = idtcs;
     }
 
     public int getIdCategorie() {
@@ -165,6 +173,51 @@ public class Produit {
         if(con== null){    connecte.close();    }
 
         return liste;
+    }
+    
+    public List<Produit> selectProduit(Connection con) throws Exception{
+        Connexion con1=new Connexion();
+        Connection connecte= con;
+        if(connecte==null){
+            connecte=con1.Connect();
+        }
+        Statement statement = connecte.createStatement();
+        List<Produit> liste = new ArrayList<Model.Produit>();
+        String sql = "select * from produit";
+        System.out.print(sql);
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        while (resultSet.next()) {
+            Produit produit= new Produit();
+            produit.setIdtcs(resultSet.getInt("idtcs"));
+            produit.setIdStyle(resultSet.getInt("idStyle"));
+            produit.setIdVolume(resultSet.getInt("idVolume"));
+            produit.setNomStyle(resultSet.getString("nomstyle"));
+            produit.setNomCategorie(resultSet.getString("nomcategorie"));
+            produit.setNomVolume(resultSet.getString("nomvolume"));
+            liste.add(produit);
+        }
+        
+        if(con== null){    connecte.close();    }
+
+        return liste;
+    }
+    
+    public static void main(String[] args) {
+        try {
+            Connexion connexion = new Connexion();
+            Connection con = connexion.Connect();
+           
+            
+            List<Produit> listeMatiere = new Produit().selectProduit(null);
+            for(int i=0 ; i<listeMatiere.size() ; i++){
+                System.out.println(listeMatiere.get(i).NomCategorie);
+            }
+            
+            con.close();
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
     
 }
