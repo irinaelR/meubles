@@ -4,10 +4,12 @@
     Author     : ITU
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="Model.Produit"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-    List<Produit> produits = request.getAttribut("listeProduit");
+    List<Produit> produits = (List<Produit>)request.getAttribute("listeProduit");
 %>
 
 <!DOCTYPE html>

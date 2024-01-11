@@ -29,18 +29,21 @@ public class TraitementAjoutPrixMatiere extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String idMatiere = request.getParameter("matiere");
-        String prix = request.getParameter("prix");
-        
-        Matiere matiere = new Matiere();
-        matiere.setIdMatiere(idMatiere);
-        matiere.setPrix(prix);
-        
-        try {
-            matiere.insert(null);
-        } catch (Exception e) {
+          try (PrintWriter out = response.getWriter()) {
+            String idMatiere = request.getParameter("matiere");
+            String prix = request.getParameter("prix");
             
-        }
+            out.println(idMatiere+" "+prix);
+            Matiere matiere = new Matiere();
+            matiere.setIdMatiere(idMatiere);
+            matiere.setPrix(prix);
+
+            try {
+                matiere.insertMatiereAvecPrix(null);
+            } catch (Exception e) {
+                out.println(e);
+            }
+          }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

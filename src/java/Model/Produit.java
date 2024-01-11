@@ -150,7 +150,7 @@ public class Produit {
         Statement statement = connecte.createStatement();
         List<Produit> liste = new ArrayList<Model.Produit>();
         String sql = "select * from coutmeuble where cout <= " + max + " AND cout >= " + min;
-
+        System.out.print(sql);
         ResultSet resultSet = statement.executeQuery(sql);
 
         while (resultSet.next()) {

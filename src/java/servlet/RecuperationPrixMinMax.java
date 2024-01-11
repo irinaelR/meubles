@@ -32,16 +32,20 @@ public class RecuperationPrixMinMax extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String min = request.getParameter("min");
-        String max = request.getParameter("max");
-        
-        try {
-            List<Produit> liste = new Produit().getProduitAvecPrix(null, min, max);
-            request.setAttribute("listeProduit",liste);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("listeMeubleSelonPrix.jsp");
-            dispatcher.forward(request, response);
-        } catch (Exception e) {
-            
+        try (PrintWriter out = response.getWriter()) {
+            String min = request.getParameter("min");
+            String max = request.getParameter("max");
+
+            try {
+                out.println(min+"  "+ max);
+                List<Produit> liste = new Produit().getProduitAvecPrix(null, min, max);
+                out.println(min+"  "+ max);
+                request.setAttribute("listeProduit",liste);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("listeMeubleSelonPrix.jsp");
+                dispatcher.forward(request, response);
+            } catch (Exception e) {
+                out.println(e);
+            }
         }
         
     }

@@ -4,10 +4,13 @@
     Author     : ITU
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="Model.Matiere"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-    List<Matiere> matieres = new Matiere().select(null);
+    Matiere matiere1= new Matiere();
+    List<Matiere> matieres = matiere1.select(null);
 %>
 
 <!DOCTYPE html>
@@ -17,8 +20,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-<<<<<<< Updated upstream
-=======
 
         <div id="main-container">
             <form action="TraitementAjoutPrixMatiere" method="get" class="form-card">
