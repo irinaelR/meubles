@@ -27,8 +27,6 @@ public class Matiere {
         this.idMatiere = idMatiere;
         this.Quantite = Quantite;
     }
-
-    
     
     public double getQuantite() {
         return Quantite;
@@ -175,6 +173,31 @@ public class Matiere {
         
     }
     
+    public List<Matiere> listeMatiereParProduit(Connection con, int idProduit) throws Exception {
+        Connexion con1=new Connexion();
+        Connection connecte= con;
+        if(connecte==null){
+            connecte=con1.Connect();
+        }
+        Statement statement = connecte.createStatement();
+        List<Matiere> liste = new ArrayList<Model.Matiere>();
+        String sql = "select * from formuleAvecStyleCategorie where idtcs=" + idProduit;
+
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        while (resultSet.next()) {
+            Matiere temp = new Matiere();
+            temp.setIdMatiere(resultSet.getInt("idMatiere"));
+            temp.setNomMatiere(resultSet.getString("nomMatiere"));
+
+            liste.add(temp);
+        }
+        
+        if(con== null){    connecte.close();    }
+
+        return liste;
+    }
+    
     public static void main(String[] args){
         try {
             Connexion connexion = new Connexion();
@@ -183,21 +206,15 @@ public class Matiere {
             cat.setIdMatiere(1);
             
             
-             List<Produit> listeProduit = cat.selectProduitUtiliseMatiere(con);
-            for(int i=0 ; i<listeProduit.size() ; i++){
-                System.out.println(listeProduit.get(i).getNomCategorie()+"   "+listeProduit.get(i).getNomStyle()+"  "+ listeProduit.get(i).getQuantite());
+            List<Matiere> listeMatiere = cat.listeMatiereParProduit(con,1);
+            for(int i=0 ; i<listeMatiere.size() ; i++){
+                System.out.println(listeMatiere.get(i).idMatiere);
             }
             
-//            cat.setNomMatiere("rams");
-//            cat.insert(null);
-//            List<Matiere> liste = cat.select(con);
-//            for(int i=0 ; i<liste.size() ; i++){
-//                System.out.println(liste.get(i).getNomMatiere());
-//            }
             con.close();
         }catch(Exception e){
             System.out.println(e);
         }
     }
-    
+   
 }
