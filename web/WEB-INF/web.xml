@@ -56,6 +56,22 @@
         <servlet-name>TraitementAchatMatierePremiere</servlet-name>
         <servlet-class>servlet.TraitementAchatMatierePremiere</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InsertionTypeEmploye</servlet-name>
+        <servlet-class>servlet.InsertionTypeEmploye</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertionSalaire</servlet-name>
+        <servlet-class>servlet.InsertionSalaire</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertionNbrPersonnes</servlet-name>
+        <servlet-class>servlet.InsertionNbrPersonnes</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertionNbrHeure</servlet-name>
+        <servlet-class>servlet.InsertionNbrHeure</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TraitementInsertionCategorie</servlet-name>
         <url-pattern>/TraitementInsertionCategorie</url-pattern>
@@ -119,5 +135,21 @@
     <servlet-mapping>
         <servlet-name>TraitementFabricationProduit</servlet-name>
         <url-pattern>/TraitementFabricationProduit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertionTypeEmploye</servlet-name>
+        <url-pattern>/InsertionTypeEmploye</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertionSalaire</servlet-name>
+        <url-pattern>/InsertionSalaire</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertionNbrPersonnes</servlet-name>
+        <url-pattern>/InsertionNbrPersonnes</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertionNbrHeure</servlet-name>
+        <url-pattern>/InsertionNbrHeure</url-pattern>
     </servlet-mapping>
 </web-app>
