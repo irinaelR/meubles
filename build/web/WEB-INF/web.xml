@@ -112,4 +112,12 @@
         <servlet-name>TraitementAchatMatierePremiere</servlet-name>
         <url-pattern>/TraitementAchatMatierePremiere</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>TraitementFabricationProduit</servlet-name>
+        <servlet-class>servlet.TraitementFabricationProduit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TraitementFabricationProduit</servlet-name>
+        <url-pattern>/TraitementFabricationProduit</url-pattern>
+    </servlet-mapping>
 </web-app>
