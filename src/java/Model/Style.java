@@ -20,6 +20,7 @@ import java.util.List;
 public class Style {
     int idStyle;
     String nomStyle;
+    double nombreHeure;
 
     public int getIdStyle() {
         return idStyle;
@@ -27,6 +28,10 @@ public class Style {
 
     public void setIdStyle(int idStyle) {
         this.idStyle = idStyle;
+    }
+    
+    public void setIdStyle(String idStyle) {
+        setIdStyle(Integer.parseInt(idStyle));
     }
 
     public String getNomStyle() {
@@ -36,6 +41,19 @@ public class Style {
     public void setNomStyle(String nomStyle) {
         this.nomStyle = nomStyle;
     }
+
+    public double getNombreHeure() {
+        return nombreHeure;
+    }
+
+    public void setNombreHeure(double nombreHeure) {
+        this.nombreHeure = nombreHeure;
+    }
+    
+    public void setNombreHeure(String nombreHeure) {
+        setNombreHeure(Double.parseDouble(nombreHeure));
+    }
+    
     
     public Style() {}
 
@@ -82,6 +100,26 @@ public class Style {
             
         }catch(Exception e){ 
             throw new Exception(" il y a erreur dans : Categorie/insert(con)");
+        }finally{
+            if(con== null){    connecte.close();    }
+        }
+    }
+    
+    public void insertNombreHeure(Connection con) throws Exception {
+        Connexion con1=new Connexion();
+        Connection connecte= con;
+        try{
+            if(connecte==null){
+                connecte=con1.Connect();
+            }
+        
+            String requette="insert into nbHoraireParStyle(idStyle, nbHeures) values (" + getIdStyle() + "," + getNombreHeure() + ");";
+            System.out.println(requette);
+            Statement stat=connecte.createStatement();
+            stat.executeUpdate(requette);
+            
+        }catch(Exception e){ 
+            throw new Exception(" il y a erreur dans : Categorie/insertNombreHeure(con)");
         }finally{
             if(con== null){    connecte.close();    }
         }
@@ -159,16 +197,12 @@ public class Style {
     }
      public static void main(String[] args){
         try {
-            Connexion connexion = new Connexion();
-            Connection con = connexion.Connect();
-            Style cat= new Style();
-            cat.setNomStyle("style1");
-//            cat.insert(null);
-            List<Style> liste = cat.select(con);
-            for(int i=0 ; i<liste.size() ; i++){
-                System.out.println(liste.get(i).getNomStyle());
-            }
-            con.close();
+            Style style = new Style();
+            style.idStyle = 2;
+            style.nomStyle = "Aaaa";
+            style.nombreHeure = 10;
+            
+            style.insertNombreHeure(null);
         }catch(Exception e){
             System.out.println(e);
         }

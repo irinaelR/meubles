@@ -5,6 +5,14 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Model.TypeEmploye" %>
+<%@page import="java.util.List" %>
+
+
+<%
+    TypeEmploye te = new TypeEmploye();
+    List<TypeEmploye> typeEmployes = te.select(null);
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,10 +21,15 @@
     </head>
     <body>
         <h1>Inserer le salaire par heure des employes</h1>
-        <form method="get" action="">
+        <form method="get" action="InsertionSalaire">
             <label>Employe</label>
             <select name="employe">
-                <option value="">Employe1</option>
+                <%
+                    for(int i=0; i<typeEmployes.size(); i++) { %>
+                        <option value=<%= typeEmployes.get(i).getIdType() %>><%= typeEmployes.get(i).getNomType() %></option>
+                    <% }
+                %>
+               
             </select>
             <input type="number" name="salaire" placeholder="Salaire">
             <input type="submit" value="OK">

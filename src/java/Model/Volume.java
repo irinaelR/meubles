@@ -21,6 +21,7 @@ import connexion.*;
 public class Volume {
     int IdVolume ; 
     String NomVolume;
+    int nbrePersonne;
 
     public Volume(int IdVolume, String NomVolume) {
         this.IdVolume = IdVolume;
@@ -41,6 +42,10 @@ public class Volume {
     public void setIdVolume(int IdVolume) {
         this.IdVolume = IdVolume;
     }
+    
+    public void setIdVolume(String IdVolume) {
+        setIdVolume(Integer.parseInt(IdVolume));
+    }
 
     public String getNomVolume() {
         return NomVolume;
@@ -49,6 +54,20 @@ public class Volume {
     public void setNomVolume(String NomVolume) {
         this.NomVolume = NomVolume;
     }
+
+    public int getNbrePersonne() {
+        return nbrePersonne;
+    }
+
+    public void setNbrePersonne(int nbrePersonne) {
+        this.nbrePersonne = nbrePersonne;
+    }
+    
+    public void setNbrePersonne(String nbrePersonne) {
+        setNbrePersonne(Integer.parseInt(nbrePersonne));
+    }
+    
+    
     
  
 //    
@@ -97,19 +116,57 @@ public class Volume {
             if(con== null){    connecte.close();    }
         }
     }
+    
+    public void insertNombrePersonne(Connection con) throws Exception {
+        Connexion con1=new Connexion();
+        Connection connecte= con;
+        try{
+            if(connecte==null){
+                connecte=con1.Connect();
+            }
+        
+            String requette="insert into NOMBREPERSONNEPARTAILLE(IDTAILLE, NBPERS) values ("+getIdVolume()+"," + getNbrePersonne() + ");";
+            System.out.println(requette);
+            Statement stat=connecte.createStatement();
+            stat.executeUpdate(requette);
+            
+        }catch(Exception e){ 
+            System.out.println(e);
+            throw new Exception(" il y a erreur dans : Volume/insertNombrePersonne(con)");
+        }finally{
+            if(con== null){    connecte.close();    }
+        }
+    }
+    
+    public void insertionEmployerParTaille(Connection con, TypeEmploye typeEmploye) throws Exception {
+        Connexion con1=new Connexion();
+        Connection connecte= con;
+
+        if(connecte==null){
+            connecte=con1.Connect();
+        }
+
+        String requette="insert into typePersonneParTaille(idTaille,idEmp,nb) values (" + getIdVolume() +  "," + typeEmploye.getIdType() +  "," + getNbrePersonne() +");";
+        System.out.println(requette);
+        Statement stat=connecte.createStatement();
+        stat.executeUpdate(requette);
+
+        if(con== null){    connecte.close();    }
+    }
+    
 //    
     public static void main(String[] args){
         try {
-        Connexion connexion = new Connexion();
-        Connection con = connexion.Connect();
-        Volume cat= new Volume();
-        cat.setNomVolume("rams");
-        cat.insert(null);
-        List<Volume> liste = cat.select(con);
-        for(int i=0 ; i<liste.size() ; i++){
-            System.out.println(liste.get(i).getNomVolume());
-        }
-        con.close();
+            Volume vol = new Volume();
+            vol.IdVolume = 1;
+            vol.NomVolume = "Boost";
+            vol.nbrePersonne = 3;
+            
+            vol.insertNombrePersonne(null);
+            
+            TypeEmploye te = new TypeEmploye(1, "sqflmj");
+            vol.insertionEmployerParTaille(null, te);
+            
         }catch(Exception e){
             System.out.println(e);
         }
