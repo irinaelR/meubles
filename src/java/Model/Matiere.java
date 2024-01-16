@@ -189,7 +189,7 @@ public class Matiere {
             Matiere temp = new Matiere();
             temp.setIdMatiere(resultSet.getInt("idMatiere"));
             temp.setNomMatiere(resultSet.getString("nomMatiere"));
-
+            temp.setQuantite(resultSet.getDouble("quantite"));
             liste.add(temp);
         }
         
@@ -208,7 +208,7 @@ public class Matiere {
             
             List<Matiere> listeMatiere = cat.listeMatiereParProduit(con,1);
             for(int i=0 ; i<listeMatiere.size() ; i++){
-                System.out.println(listeMatiere.get(i).idMatiere);
+                System.out.println(listeMatiere.get(i).idMatiere+"  "+ listeMatiere.get(i).getQuantite());
             }
             
             con.close();

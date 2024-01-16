@@ -109,7 +109,7 @@ public class Stock {
             stat.executeUpdate(requette);
             
         }catch(Exception e){ 
-            throw new Exception(" il y a erreur dans : Categorie/insert(con)");
+            throw new Exception(" il y a erreur dans : Stock/insertionSortie(con) "+e);
         }finally{
             if(con== null){    connecte.close();    }
         }
@@ -140,7 +140,7 @@ public class Stock {
     public boolean verifierStock(double quantite,int idMatiere, List<Stock> stocks) throws Exception {
         for (int i = 0; i < stocks.size(); i++) {
             if(stocks.get(i).getIdMatiere() == idMatiere) {
-                if (stocks.get(i).getQuantiteRestant() < quantite) {
+                if (stocks.get(i).getQuantiteRestant() > quantite) {
                     return true;
                 } else {
                     throw new Exception("Stock insuffisant pour " + stocks.get(i).getNomMatiere() + " Il manque " + (quantite - stocks.get(i).getQuantiteRestant()));
@@ -164,19 +164,19 @@ public class Stock {
             List<Stock> stocks = listeResteStock(connecte);
         
             for (int i = 0; i < matieres.size(); i++) {
+                System.out.println("   matieres.get(i).getQuantite() : "+ matieres.get(i).getQuantite()+" quantite : "+quantite);
                 double quantiteTotale = matieres.get(i).getQuantite()*quantite;
                 if (verifierStock(quantiteTotale,matieres.get(i).getIdMatiere(), stocks)) {
                     Stock tempStock = new Stock();
                     tempStock.setIdMatiere(matieres.get(i).getIdMatiere());
-                    tempStock.setQuantiteRestant(quantiteTotale);
-                    
+                    tempStock.setQuantiteRestant(quantiteTotale);                  
                     tempStock.insertionSortie(connecte);
                 }
             }
             
         }catch(Exception e){ 
             connecte.rollback();
-            throw new Exception(" il y a erreur dans : Categorie/insert(con)");
+            throw new Exception(" il y a erreur dans : Stock/insertionCommance(con) "+e);
         }finally{
             if(con== null){    connecte.close();    }
         }
