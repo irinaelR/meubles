@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Profil</h1>
-        <form action='' method='get'>
+        <form action='InsertionProfil' method='get'>
             <div>
                 <label>Nom</label>
                 <input name='nom' type='text' required>

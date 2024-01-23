@@ -13,14 +13,14 @@
     </head>
     <body>
         <h1>Employe</h1>
-        <form action='' method='get'>
+        <form action='InsertionEmploye' method='get'>
             <div>
                 <label>Nom Employe</label>
                 <input name='nomEmploye' type='text' required>
             </div>
             <div>
                 <label>Date d'embauche</label>
-                <input name='dateeEmbauch' type='date' required>
+                <input name='dateEmbauche' type='date' required>
             </div>
             <div>
                 <label>Annees Experience</label>
