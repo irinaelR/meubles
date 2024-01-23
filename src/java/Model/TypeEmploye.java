@@ -80,6 +80,23 @@ public class TypeEmploye {
         return liste;
     }
     
+      public void insertTypeEmploye(Connection con) throws Exception {
+        Connexion con1=new Connexion();
+        Connection connecte= con;
+
+        if(connecte==null){
+            connecte=con1.Connect();
+        }
+
+        String requette="insert into typeEmploye(nomEmploye) values ('" + this.nomType+"');";
+        System.out.println(requette);
+        Statement stat=connecte.createStatement();
+        stat.executeUpdate(requette);
+
+        if(con== null){    connecte.close();    }
+    }
+    
+    
     public void insert(Connection con, int idVolume) throws Exception {
         Connexion con1=new Connexion();
         Connection connecte= con;
@@ -103,10 +120,11 @@ public class TypeEmploye {
         te.nombre = 4;
         
         try {
-            List<TypeEmploye> liste = te.select(null);
-            for (TypeEmploye typeEmploye : liste) {
-                System.out.println(typeEmploye.getNomType());
-            }
+            te.insertTypeEmploye(null);
+//            List<TypeEmploye> liste = te.select(null);
+//            for (TypeEmploye typeEmploye : liste) {
+//                System.out.println(typeEmploye.getNomType());
+//            }
         } catch (Exception e) {
             System.out.println(e);
         }
