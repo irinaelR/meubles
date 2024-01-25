@@ -9,6 +9,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import Model.Client;
+import java.io.PrintWriter;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -27,12 +30,17 @@ public class InsertionClientTraitement extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       Client c = new Client();
-       c.setNom(request.getParameter("nom"));
-       c.setPrenom(request.getParameter("prenom"));
-       
-       DateTimeFormatter dtf = new DateTimeFormatter;
-       c.setDateNaissance(request.getParameter("dateNaissance"));
+        try (PrintWriter out = response.getWriter()) {
+            Client c = new Client();
+            c.setNom(request.getParameter("nom"));
+            c.setPrenom(request.getParameter("prenom"));
+
+            try {
+                c.setDtn(request.getParameter("dateNaissance"));
+            } catch (Exception e) {
+                out.println(e);
+            }
+        } 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

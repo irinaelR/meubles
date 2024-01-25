@@ -72,14 +72,6 @@
         <servlet-name>InsertionNbrHeure</servlet-name>
         <servlet-class>servlet.InsertionNbrHeure</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>InsertionClientTraitement</servlet-name>
-        <servlet-class>servlet.InsertionClientTraitement</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>InsertionVenteServlet</servlet-name>
-        <servlet-class>servlet.InsertionVenteServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>TraitementInsertionCategorie</servlet-name>
         <url-pattern>/TraitementInsertionCategorie</url-pattern>
@@ -160,12 +152,9 @@
         <servlet-name>InsertionNbrHeure</servlet-name>
         <url-pattern>/InsertionNbrHeure</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
+    
+    <servlet>
         <servlet-name>InsertionClientTraitement</servlet-name>
-        <url-pattern>/InsertionClientTraitement</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>InsertionVenteServlet</servlet-name>
-        <url-pattern>/InsertionVenteServlet</url-pattern>
-    </servlet-mapping>
+        <servlet-class>servlet.InsertionClientTraitement</servlet-class>
+    </servlet>
 </web-app>
