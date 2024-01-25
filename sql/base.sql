@@ -326,3 +326,9 @@ insert into vente(idProduit,idClient, date, quantite ) values
 (1 , 1 ,'2023-03-02' ,3), 
 (1 , 2 ,'2023-03-02' ,1) 
 ;
+
+create or replace view venteAvecGenre as(
+    select idVente, idProduit, idGenre as genre from vente
+        join client 
+        on client.idClient = vente.idClient
+);
