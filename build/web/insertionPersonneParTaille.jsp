@@ -5,6 +5,16 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@page import="Model.Volume" %>
+<%@page import="java.util.List" %>
+
+
+<%
+    Volume volume = new Volume();
+    List<Volume> volumes = volume.select(null);
+%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,7 +26,11 @@
         <form method="get" action="">
             <label>Taille</label>
             <select name="taille">
-                <option value="">GM</option>
+                <%
+                    for(int i=0; i<styles.size(); i++) { %>
+                        <option value=<%= styles.get(i).getIdStyle() %>><%= styles.get(i).getNomStyle() %></option>
+                    <% }
+                %>
             </select>
             <br>
             <input type="number" name="nbPersonne" placeholder="Nombre de personnes">

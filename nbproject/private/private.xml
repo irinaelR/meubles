@@ -3,7 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Irina/Documents/NetBeansProjects/meubles/meubles/web/AchatMatierePremiere.jsp</file>
+            <file>file:/C:/Users/Irina/Documents/NetBeansProjects/meubles/meubles/src/java/servlet/InsertionTypeEmploye.java</file>
+            <file>file:/C:/Users/Irina/Documents/NetBeansProjects/meubles/meubles/src/java/servlet/RecuperationTailleCategorieStyle.java</file>
+            <file>file:/C:/Users/Irina/Documents/NetBeansProjects/meubles/meubles/src/java/servlet/RecuperationProduitAFabriquer.java</file>
+            <file>file:/C:/Users/Irina/Documents/NetBeansProjects/meubles/meubles/src/java/Model/CommandeMeuble.java</file>
+            <file>file:/C:/Users/Irina/Documents/NetBeansProjects/meubles/meubles/src/java/servlet/InsertionSalaire.java</file>
         </group>
     </open-files>
 </project-private>

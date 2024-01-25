@@ -4,9 +4,7 @@
  */
 package servlet;
 
-import Model.TypeEmploye;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,7 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author Irina
  */
-public class InsertionTypeEmploye extends HttpServlet {
+public class InsertionClientTraitement extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,16 +27,12 @@ public class InsertionTypeEmploye extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         try (PrintWriter out = response.getWriter()) {
-            String nomType = request.getParameter("nomType");
-            TypeEmploye typeEmploye = new TypeEmploye();
-            typeEmploye.setNomType(nomType);
-            try{
-                typeEmploye.insertTypeEmploye(null);
-            }catch(Exception e){
-                out.println(e);
-            }
-        }
+       Client c = new Client();
+       c.setNom(request.getParameter("nom"));
+       c.setPrenom(request.getParameter("prenom"));
+       
+       DateTimeFormatter dtf = new DateTimeFormatter;
+       c.setDateNaissance(request.getParameter("dateNaissance"));
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

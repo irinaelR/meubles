@@ -4,19 +4,18 @@
  */
 package servlet;
 
-import Model.TypeEmploye;
 import java.io.IOException;
 import java.io.PrintWriter;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
  * @author Irina
  */
-public class InsertionTypeEmploye extends HttpServlet {
+public class InsertionVenteServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,15 +28,18 @@ public class InsertionTypeEmploye extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         try (PrintWriter out = response.getWriter()) {
-            String nomType = request.getParameter("nomType");
-            TypeEmploye typeEmploye = new TypeEmploye();
-            typeEmploye.setNomType(nomType);
-            try{
-                typeEmploye.insertTypeEmploye(null);
-            }catch(Exception e){
-                out.println(e);
-            }
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet InsertionVenteServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet InsertionVenteServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
