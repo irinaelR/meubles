@@ -142,6 +142,7 @@ CREATE TABLE COMMANDE (
     FOREIGN KEY(IDPRODUIT) REFERENCES TAILLEPARCATEGORIEPARSTYLE(IDTCS)
 );  
 
+
 CREATE TABLE MOUVEMENTSTOCK (
     IDMOUVEMENT SERIAL PRIMARY KEY,
     IDMATIERE INT NOT NULL,
@@ -212,7 +213,6 @@ CREATE TABLE NBHORAIREPARSTYLE (
     IDSTYLE INT,
     NBHEURES DOUBLE PRECISION,
     FOREIGN KEY(idstyle) REFERENCES style(IDSTYLE)
-
 );
 
 INSERT INTO NBHORAIREPARSTYLE VALUES 
@@ -291,3 +291,38 @@ CREATE OR REPLACE VIEW PROFILACTUEL AS (
             EXPERIENCEPAREMPLOYE.EXPERIENCEACTUELLE >= PROFIL.EXPERIENCEMIN AND 
         EXPERIENCEPAREMPLOYE.EXPERIENCEACTUELLE <= PROFIL.EXPERIENCEMAX
 );
+
+create table genre (
+    idGenre serial primary key, 
+    nomGenre varchar(50)
+);
+insert into genre(nomGenre) values
+('Homme') ,
+('Femme');
+
+create table client (
+    idClient serial primary key  , 
+    nomClient varchar(50),
+    prenomClient varchar(50) , 
+    dtn date , 
+    idGenre int not null ,
+    foreign key(idGenre) references genre(idGenre)
+);
+insert into client(nomClient,prenomClient, dtn , idgenre)values
+('rampanjato' , 'fehizoro' , '2002-01-01' , 1),
+('rampanjato' , 'Manoa' , '2004-06-03' , 2)
+;
+
+create table vente (
+    idVente serial primary key ,
+    idProduit int not null , 
+    idClient int not null ,
+    date date , 
+    quantite int not null, 
+    foreign key (idProduit) references TAILLEPARCATEGORIEPARSTYLE(IDTCS),
+    foreign key (idClient) references client(idClient)
+);
+insert into vente(idProduit,idClient, date, quantite ) values
+(1 , 1 ,'2023-03-02' ,3), 
+(1 , 2 ,'2023-03-02' ,1) 
+;
