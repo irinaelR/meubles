@@ -35,7 +35,7 @@ public class Vente {
     }
     
     public void setIdProduit(String idProduit) {
-        setIdClient(Integer.parseInt(idProduit));
+        setIdProduit(Integer.parseInt(idProduit));
     }
 
     public int getIdClient() {
@@ -76,6 +76,9 @@ public class Vente {
 
     public void setQuantite(int quantite) {
         this.quantite = quantite;
+    }
+    public void setQuantite(String quantite) {
+        this.quantite = Integer.parseInt(quantite);
     }
    
     public void insert(Connection con) throws Exception {
@@ -126,7 +129,8 @@ public class Vente {
     }
     
 
-    public int[] statistiqueVente(int idProduit) throws Exception {
+    public int[] statistiqueVente() throws Exception {
+    
         int[] rep = new int[2];
         int homme = 0;
         int femme = 0;
@@ -138,8 +142,9 @@ public class Vente {
         String sql = "select * from venteAvecGenre";
 
         if (idProduit > 0 ){
-            sql = sql + "where idProduit=" + idProduit;
+            sql = sql + " where idProduit=" + getIdProduit();
         }
+        System.out.println(sql);
 
         ResultSet resultSet = statement.executeQuery(sql);
 

@@ -15,7 +15,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         </style>
     </head>
     <body>
-        <form action="insertionClientTraitement" method="get">
+        <form action="InsertionClientTraitement" method="get">
             <H2>Insertion client</H2>
             <label for="">Nom : </label>
             <input type="text" name="nom" id="">
@@ -24,10 +24,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             <input type="text" name="prenom" id="">
 
             <label for="">Date Naissance : </label>
-            <input type="text" name="dateNaissance" id="">
+            <input type="date" name="dateNaissance" id="">
 
             <label for="">Genre : </label>
-            <input type="text" name="genre" id="">
+            <select name="genre" >
+                <option value="1"> Homme</option>
+                <option value="2"> Femme</option>
+
+            </select>
 
             <input type="submit" value="Valider">
         </form>

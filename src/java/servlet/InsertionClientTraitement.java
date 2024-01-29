@@ -5,10 +5,10 @@
 package servlet;
 
 import java.io.IOException;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import Model.Client;
 import java.io.PrintWriter;
 import java.time.format.DateTimeFormatter;
@@ -31,12 +31,13 @@ public class InsertionClientTraitement extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try (PrintWriter out = response.getWriter()) {
-            Client c = new Client();
-            c.setNom(request.getParameter("nom"));
-            c.setPrenom(request.getParameter("prenom"));
-
             try {
+                Client c = new Client();
+                c.setNom(request.getParameter("nom"));
+                c.setPrenom(request.getParameter("prenom"));
+                c.setGenre(request.getParameter("genre"));
                 c.setDtn(request.getParameter("dateNaissance"));
+                c.insert(null);
             } catch (Exception e) {
                 out.println(e);
             }
