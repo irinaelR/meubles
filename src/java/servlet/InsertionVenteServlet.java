@@ -7,10 +7,10 @@ package servlet;
 import Model.Utilitaire;
 import java.io.IOException;
 import java.io.PrintWriter;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import Model.Vente;
 
 /**
@@ -36,12 +36,21 @@ public class InsertionVenteServlet extends HttpServlet {
                 String idProduit = request.getParameter("produit");
                 String idClient = request.getParameter("client");
                 String date = request.getParameter("date");
+                String quantite= request.getParameter("quantite");
+                out.println("idproduit "+idProduit+"<br>");
+                out.println(idClient);
+                out.println(date);
 
                 Vente vente = new Vente();
                 vente.setIdClient(idClient);
                 vente.setIdProduit(idProduit);
-                vente.setDate(Utilitaire.stringEnDate(date));
+                out.println("idproduit "+vente.getIdProduit()+"<br>");
+                out.println("idproduit "+vente.getIdProduit()+"<br>");
 
+
+                vente.setDate(Utilitaire.stringEnDate(date));
+                vente.setQuantite(quantite);
+            
                 vente.insert(null);
             } catch (Exception e) {
                 out.print(e);

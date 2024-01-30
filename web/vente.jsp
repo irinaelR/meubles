@@ -23,8 +23,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     </head>
     <body>
         <h2>Vente</h2>
-        <form action="insertionVenteServlet" method="get">
-            <select name="produit" id="">
+        <form action="InsertionVenteServlet" method="get">
+            <select name="client" id="">
                 <%
                     for(int i=0;i<clients.size();i++) { %>
                         <option value="<%= clients.get(i).getIdClient() %>"><%= clients.get(i).getNom() %></option>
@@ -32,7 +32,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 %>
             </select>
 
-            <select name="client" id="">
+            <select name="produit" id="">
                 <%
                     for(int i=0;i<produits.size();i++) { %>
                         <option value="<%= produits.get(i).getIdtcs() %>"><%= produits.get(i).getNomStyle() %> <%= produits.get(i).getNomCategorie() %> <%= produits.get(i).getNomVolume() %></option>
@@ -40,7 +40,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 %>
             </select>
 
-            <input type="date">
+            <input type="date" name="date">
+            <input type="number" name="quantite">
 
             <input type="submit" value="Valider">
         </form>

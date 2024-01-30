@@ -114,13 +114,13 @@ public class Client {
                 connecte=con1.Connect();
             }
         
-            String requette="insert into client(nomClient,dtn,genre) values ('"+getNom()+"','" + Utilitaire.dateEnString(dtn) + "' " + getGenre() + ");";
+            String requette="insert into client(nomClient,prenomClient, dtn , idgenre) values ('"+getNom()+"','"+getPrenom()+"' ,'" + Utilitaire.dateEnString(dtn) + "' ," + getGenre() + ");";
             System.out.println(requette);
             Statement stat=connecte.createStatement();
             stat.executeUpdate(requette);
             
         }catch(Exception e){ 
-            throw new Exception(" il y a erreur dans : Categorie/insert(con)");
+            throw new Exception(" il y a erreur dans : client/insert(con)");
         }finally{
             if(con== null){    connecte.close();    }
         }
